@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import rawErp from "@/data/raw-erp-records.json";
 import rawPlm from "@/data/raw-plm-records.json";
 import rawSupplier from "@/data/raw-supplier-records.json";
@@ -11,8 +11,15 @@ import { TransformationWorkbench } from "@/components/etl/TransformationWorkbenc
 import { ValidationResults } from "@/components/etl/ValidationResults";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useDemoState } from "@/lib/demo-state";
+import { applyAcceptedMatchNamesToHarmonisedRows } from "@/lib/matching";
 
 export default function EtlPipelinePage() {
+  const { harmonisedRows, matchCandidates } = useDemoState();
+  const displayedHarmonisedRows = useMemo(
+    () => applyAcceptedMatchNamesToHarmonisedRows(harmonisedRows, matchCandidates),
+    [harmonisedRows, matchCandidates]
+  );
   const [running, setRunning] = useState(false);
   const start = () => {
     setRunning(true);
@@ -39,7 +46,7 @@ export default function EtlPipelinePage() {
         <RawDataTable title="Raw supplier records" records={rawSupplier as unknown as Record<string, unknown>[]} />
       </div>
       <div className="grid gap-4 xl:grid-cols-[1fr_420px]">
-        <HarmonisedDataTable records={rawErp as unknown as Record<string, unknown>[]} />
+        <HarmonisedDataTable rows={displayedHarmonisedRows} />
         <ValidationResults />
       </div>
     </div>

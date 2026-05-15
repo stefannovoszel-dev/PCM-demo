@@ -20,6 +20,14 @@ function confidenceVariant(score: number) {
   return "destructive";
 }
 
+function sourceIds(candidate: AiMatchCandidate) {
+  return [
+    candidate.candidate_b.ERP_record_id,
+    candidate.candidate_b.PLM_record_id,
+    candidate.candidate_b.SUP_REC_record_id
+  ].filter(Boolean);
+}
+
 export function AiMatchTable({
   candidates,
   onSelect
@@ -38,6 +46,18 @@ export function AiMatchTable({
       {
         header: "Candidate B",
         cell: ({ row }) => row.original.candidate_b.component_name
+      },
+      {
+        header: "ETL source IDs",
+        cell: ({ row }) => (
+          <div className="flex flex-wrap gap-1">
+            {sourceIds(row.original).map((sourceId) => (
+              <Badge key={sourceId} variant="outline">
+                {sourceId}
+              </Badge>
+            ))}
+          </div>
+        )
       },
       {
         accessorKey: "confidence",

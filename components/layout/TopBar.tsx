@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { useDemoState } from "@/lib/demo-state";
 
 export function TopBar() {
-  const { readiness, appliedSupplierEventCount } = useDemoState();
+  const { readiness, autoAppliedEvidenceEventCount, pendingEvidenceReviewCount } = useDemoState();
 
   return (
     <header className="sticky top-0 z-20 border-b bg-white/95 backdrop-blur">
@@ -22,9 +22,9 @@ export function TopBar() {
             <Database className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
             Local seed data
           </Badge>
-          <Badge variant={appliedSupplierEventCount > 0 ? "success" : "warning"}>
+          <Badge variant={pendingEvidenceReviewCount ? "warning" : autoAppliedEvidenceEventCount ? "success" : "outline"}>
             <CheckCircle2 className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
-            {appliedSupplierEventCount}/5 supplier events
+            {autoAppliedEvidenceEventCount} applied evidence · {pendingEvidenceReviewCount} review
           </Badge>
           <div className="min-w-44">
             <div className="mb-1 flex items-center justify-between text-xs">

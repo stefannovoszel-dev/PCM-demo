@@ -43,13 +43,14 @@ export const SOURCE_SYSTEMS: SourceSystem[] = [
 export const NAV_ITEMS = [
   { href: "/", label: "Landing" },
   { href: "/scenario", label: "Scenario" },
+  { href: "/ppwr-role-identifier", label: "PPWR Role Identifier" },
   { href: "/dashboard", label: "Readiness" },
+  { href: "/evidence-intake", label: "Evidence Intake" },
   { href: "/product-explorer", label: "Product Explorer" },
   { href: "/data-discovery", label: "Discovery Map" },
   { href: "/data-inventory", label: "Data Inventory" },
   { href: "/etl-pipeline", label: "ETL Pipeline" },
   { href: "/ai-matching", label: "AI Matching" },
   { href: "/osapiens-payload", label: "Payload" },
-  { href: "/supplier-playback", label: "Supplier Playback" },
   { href: "/audit-trail", label: "Audit Trail" }
 ];

@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
+import rawErp from "../data/raw-erp-records.json";
+import rawPlm from "../data/raw-plm-records.json";
+import rawSupplier from "../data/raw-supplier-records.json";
 import {
+  buildHarmonisedDataRows,
   convertWeightToGrams,
   normaliseCountry,
   normaliseMaterial,
@@ -34,6 +38,27 @@ describe("transformations", () => {
       weight_g: 12,
       supplier_id: "SUP-00492",
       recycled_content_percent: 30
+    });
+  });
+
+  it("adds ERP, PLM and supplier source record IDs to harmonised rows", () => {
+    const rows = buildHarmonisedDataRows({
+      erpRecords: rawErp as unknown as Record<string, unknown>[],
+      plmRecords: rawPlm as unknown as Record<string, unknown>[],
+      supplierRecords: rawSupplier as unknown as Record<string, unknown>[]
+    });
+    const bottle = rows.find((row) => row.ERP_record_id === "ERP-9001");
+    const cap = rows.find((row) => row.ERP_record_id === "ERP-9002");
+
+    expect(bottle).toMatchObject({
+      ERP_record_id: "ERP-9001",
+      PLM_record_id: "PLM-7101",
+      SUP_REC_record_id: "SUP-REC-3301"
+    });
+    expect(cap).toMatchObject({
+      ERP_record_id: "ERP-9002",
+      PLM_record_id: "PLM-7102",
+      SUP_REC_record_id: "SUP-REC-3302"
     });
   });
 });

@@ -11,7 +11,7 @@ import { calculateMatchConfidence } from "@/lib/matching";
 import type { AiMatchCandidate } from "@/lib/types";
 
 export default function AiMatchingPage() {
-  const { matchCandidates } = useDemoState();
+  const { matchCandidates, updateHarmonisedRowName } = useDemoState();
   const enriched = useMemo(
     () =>
       matchCandidates.map((candidate) => ({
@@ -29,7 +29,7 @@ export default function AiMatchingPage() {
         <Badge variant="ai">AI part matching console</Badge>
         <h1 className="mt-3 text-3xl font-semibold tracking-normal">Duplicate packaging part matching</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Deterministic scoring combines material, name tokens, supplier, dimensions, and weight tolerance.
+          Deterministic scoring combines material, name tokens, supplier, dimensions, and weight tolerance from the shared harmonised ETL rows.
         </p>
       </div>
       <div className="grid gap-4 md:grid-cols-3">
@@ -57,7 +57,7 @@ export default function AiMatchingPage() {
       </div>
       <div className="grid gap-4 xl:grid-cols-[1fr_420px]">
         <AiMatchTable candidates={enriched} onSelect={setSelected} />
-        <MatchExplanationPanel candidate={currentSelected} />
+        <MatchExplanationPanel candidate={currentSelected} onUpdateHarmonisedName={updateHarmonisedRowName} />
       </div>
     </div>
   );

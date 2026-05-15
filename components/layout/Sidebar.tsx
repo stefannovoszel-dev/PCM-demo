@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Activity,
   Blocks,
   ClipboardList,
   Database,
+  FileCheck,
   FileJson,
   Gauge,
   GitBranch,
@@ -14,7 +14,7 @@ import {
   ListChecks,
   Network,
   PackageSearch,
-  PlayCircle,
+  Scale,
   Sparkles
 } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/constants";
@@ -23,14 +23,15 @@ import { cn } from "@/lib/utils";
 const icons = [
   Home,
   Blocks,
+  Scale,
   Gauge,
+  FileCheck,
   PackageSearch,
   Network,
   Database,
   GitBranch,
   Sparkles,
   FileJson,
-  PlayCircle,
   ClipboardList
 ];
 
@@ -40,9 +41,11 @@ export function Sidebar() {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 border-r bg-white lg:flex lg:flex-col">
       <div className="flex h-16 items-center gap-3 border-b px-5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground">
-          <Activity className="h-5 w-5" aria-hidden="true" />
-        </div>
+        <img
+          src="/tieto_logo_blue_rgb.png"
+          alt="Tieto"
+          className="h-6 w-16 shrink-0 object-contain object-left"
+        />
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold">Product Compliance</p>
           <p className="truncate text-xs text-muted-foreground">Management Demo</p>

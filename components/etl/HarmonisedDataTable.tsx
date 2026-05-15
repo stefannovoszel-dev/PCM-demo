@@ -1,10 +1,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { applyTransformation } from "@/lib/transformations";
+import type { HarmonisedDataRow } from "@/lib/transformations";
 
-export function HarmonisedDataTable({ records }: { records: Record<string, unknown>[] }) {
-  const transformed = records.map((record) => applyTransformation(record));
-  const columns = ["record_id", "material", "weight_g", "supplier_id", "market_country"];
+export function HarmonisedDataTable({
+  rows
+}: {
+  rows: HarmonisedDataRow[];
+}) {
+  const columns = [
+    "ERP_record_id",
+    "PLM_record_id",
+    "SUP_REC_record_id",
+    "component_name",
+    "material",
+    "weight_g",
+    "supplier_id",
+    "market_country"
+  ];
 
   return (
     <Card>
@@ -21,8 +33,8 @@ export function HarmonisedDataTable({ records }: { records: Record<string, unkno
             </TableRow>
           </TableHeader>
           <TableBody>
-            {transformed.map((record, index) => (
-              <TableRow key={String(record.record_id ?? index)}>
+            {rows.map((record, index) => (
+              <TableRow key={`${record.ERP_record_id ?? "no-erp"}-${record.PLM_record_id ?? "no-plm"}-${record.SUP_REC_record_id ?? "no-supplier"}-${index}`}>
                 {columns.map((column) => (
                   <TableCell key={column}>{String(record[column] ?? "")}</TableCell>
                 ))}

@@ -8,7 +8,7 @@ import { ProductTree } from "@/components/product/ProductTree";
 import { useDemoState } from "@/lib/demo-state";
 
 export default function ProductExplorerPage() {
-  const { product, components } = useDemoState();
+  const { product, components, evidenceDocuments, evidenceEvents, scoreChanges } = useDemoState();
   const [selectedId, setSelectedId] = useState(components[0]?.component_id);
   const selected = components.find((component) => component.component_id === selectedId) ?? components[0];
 
@@ -30,7 +30,14 @@ export default function ProductExplorerPage() {
               <ComponentCard key={component.component_id} component={component} onSelect={setSelectedId} />
             ))}
           </div>
-          {selected ? <ComponentDetailPanel component={selected} /> : null}
+          {selected ? (
+            <ComponentDetailPanel
+              component={selected}
+              evidenceDocuments={evidenceDocuments}
+              evidenceEvents={evidenceEvents}
+              scoreChanges={scoreChanges}
+            />
+          ) : null}
         </div>
       </div>
     </div>

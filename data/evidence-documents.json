@@ -1,0 +1,38 @@
+[
+  {
+    "document_id": "DOC-010",
+    "document_name": "Initial_Recycled_Content_Certificate_PET_Bottle.pdf",
+    "evidence_type": "recycled_content_certificate",
+    "linked_product_id": "PRD-10045",
+    "linked_component_id": "CMP-1001",
+    "linked_supplier_id": "SUP-00318",
+    "certificate_id": "CERT-PET-2026-014",
+    "valid_from": "2026-01-01",
+    "valid_until": "2027-12-31",
+    "issuing_body": "Example Certification Body",
+    "extracted_fields": {
+      "recycled_content_percent": 30,
+      "certificate_status": "Valid"
+    },
+    "validation_status": "applied",
+    "validation_messages": []
+  },
+  {
+    "document_id": "DOC-011",
+    "document_name": "Initial_Recyclability_Report_Transport_Box.pdf",
+    "evidence_type": "recyclability_test_report",
+    "linked_product_id": "PRD-10045",
+    "linked_component_id": "CMP-1005",
+    "linked_supplier_id": "SUP-00102",
+    "certificate_id": "CERT-BOX-2026-091",
+    "valid_from": "2026-01-01",
+    "valid_until": "2027-12-31",
+    "issuing_body": "Example Packaging Lab",
+    "extracted_fields": {
+      "recyclability_grade": "A",
+      "certificate_status": "Valid"
+    },
+    "validation_status": "applied",
+    "validation_messages": []
+  }
+]

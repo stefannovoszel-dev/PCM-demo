@@ -70,6 +70,10 @@ export interface AiMatchCandidate {
     component_name: string;
   };
   candidate_b: Partial<PackagingComponent> & {
+    harmonised_row_id?: string;
+    ERP_record_id?: string;
+    PLM_record_id?: string;
+    SUP_REC_record_id?: string;
     component_id?: string;
     component_name: string;
   };
@@ -83,26 +87,6 @@ export interface AiMatchCandidate {
     | "Alias Created"
     | "Supplier Confirmation Requested";
   recommended_action: string;
-}
-
-export interface SupplierEvent {
-  event_id: string;
-  timestamp: string;
-  supplier_id: string;
-  supplier_name: string;
-  component_id: string;
-  event_type:
-    | "certificate_upload"
-    | "recycled_content_correction"
-    | "certificate_replacement"
-    | "material_change_notification"
-    | "alias_confirmation";
-  title: string;
-  description: string;
-  field_updates: Partial<PackagingComponent>;
-  resolves_fields: string[];
-  data_quality_delta: number;
-  status: "Queued" | "Applied";
 }
 
 export interface AuditEvent {

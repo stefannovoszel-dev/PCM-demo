@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { CANONICAL_MATERIALS, PPWR_REQUIRED_DATAPOINTS } from "./constants";
 import { normaliseMaterial } from "./transformations";
+import type { EvidenceDocument } from "./evidence-types";
 import type { PackagingComponent, Product, ValidationResult } from "./types";
 
 const requiredComponentFields: Array<keyof PackagingComponent> = [
@@ -119,4 +120,23 @@ export function validateDataset(product: Product, components: PackagingComponent
     errors,
     componentResults
   };
+}
+
+export function getMissingEvidenceLabels(component: PackagingComponent, evidenceDocuments: EvidenceDocument[] = []) {
+  const linkedEvidence = evidenceDocuments.filter(
+    (document) =>
+      document.linked_component_id === component.component_id &&
+      (document.validation_status === "validated" || document.validation_status === "applied")
+  );
+  const missing = [...component.missing_fields];
+
+  if (!component.evidence_url && linkedEvidence.length === 0 && !missing.includes("evidence_url")) {
+    missing.push("evidence_url");
+  }
+
+  if (component.certificate_status === "Expired" && !missing.includes("valid_certificate")) {
+    missing.push("valid_certificate");
+  }
+
+  return [...new Set(missing)];
 }

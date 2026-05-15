@@ -1,4 +1,5 @@
 import type { AuditEvent } from "./types";
+import type { EvidenceEvent, ScoreChange } from "./evidence-types";
 
 interface AuditEventInput {
   actor: string;
@@ -35,4 +36,57 @@ export function appendAuditEvent(events: AuditEvent[], event: AuditEvent) {
 
 export function formatAuditEvent(event: AuditEvent) {
   return `${event.timestamp} | ${event.actor} | ${event.action_type} | ${event.object_type}:${event.object_id}`;
+}
+
+export function createEvidenceAuditEvents(
+  event: EvidenceEvent,
+  scoreChange: ScoreChange,
+  statusAction: string
+) {
+  const objectId = event.component_id ?? event.packaging_id ?? event.product_id ?? event.supplier_id ?? event.event_id;
+  const base = {
+    actor: event.supplier_name ?? event.source,
+    object_type: event.component_id ? "Component" : "Evidence",
+    object_id: objectId,
+    source: "Evidence intake simulator"
+  };
+
+  const timestamp = event.timestamp;
+  const received = createAuditEvent(
+    {
+      ...base,
+      action_type: "evidence received",
+      before_value: null,
+      after_value: event,
+      comment: `${event.evidence_type}: ${event.impact_summary}`
+    },
+    { event_id: `AUD-${event.event_id}-RECEIVED`, timestamp }
+  );
+
+  const status = createAuditEvent(
+    {
+      ...base,
+      action_type: statusAction,
+      before_value: event.evidence_status,
+      after_value: statusAction,
+      comment: `Evidence ${event.event_id} processed with ${scoreChange.delta >= 0 ? "+" : ""}${scoreChange.delta} readiness point delta.`
+    },
+    { event_id: `AUD-${event.event_id}-STATUS`, timestamp }
+  );
+
+  const recalculated = createAuditEvent(
+    {
+      actor: "System",
+      action_type: "compliance score recalculated",
+      object_type: "Packaging dataset",
+      object_id: event.packaging_id ?? scoreChange.product_id,
+      before_value: scoreChange.previous_overall_readiness,
+      after_value: scoreChange.new_overall_readiness,
+      source: "Evidence intake simulator",
+      comment: scoreChange.reason
+    },
+    { event_id: `AUD-${event.event_id}-SCORE`, timestamp }
+  );
+
+  return [received, status, recalculated];
 }

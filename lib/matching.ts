@@ -1,5 +1,6 @@
 import type { PackagingComponent } from "./types";
-import { normaliseMaterial, normaliseSupplierName } from "./transformations";
+import { normaliseMaterial, normaliseSupplierName, type HarmonisedDataRow } from "./transformations";
+import type { AiMatchCandidate } from "./types";
 
 type MatchPart = Partial<PackagingComponent> & {
   component_name?: string;
@@ -134,4 +135,114 @@ export function calculateMatchConfidence(partA: MatchPart, partB: MatchPart) {
     suggested_canonical_name: suggestedName(partA, partB),
     recommended_action
   };
+}
+
+function candidateId(row: HarmonisedDataRow, index: number) {
+  return `MATCH-${row.harmonised_row_id || index}`;
+}
+
+function componentCandidate(component: PackagingComponent) {
+  return {
+    component_id: component.component_id,
+    component_name: component.canonical_component_name ?? component.component_name,
+    material: component.material,
+    supplier_id: component.supplier_id,
+    supplier_name: component.supplier_name,
+    weight_g: component.weight_g,
+    dimensions: component.dimensions
+  };
+}
+
+function harmonisedCandidate(row: HarmonisedDataRow) {
+  return {
+    harmonised_row_id: row.harmonised_row_id,
+    ERP_record_id: row.ERP_record_id,
+    PLM_record_id: row.PLM_record_id,
+    SUP_REC_record_id: row.SUP_REC_record_id,
+    component_name: row.component_name ?? "Unnamed harmonised row",
+    material: row.material,
+    supplier_id: row.supplier_id,
+    weight_g: row.weight_g
+  };
+}
+
+export function createAiMatchCandidatesFromHarmonisedRows(
+  components: PackagingComponent[],
+  harmonisedRows: HarmonisedDataRow[]
+): AiMatchCandidate[] {
+  const candidates: AiMatchCandidate[] = [];
+
+  harmonisedRows.forEach((row, index) => {
+    const candidateB = harmonisedCandidate(row);
+    const best = components
+      .map((component) => {
+        const candidateA = componentCandidate(component);
+        return {
+          candidateA,
+          result: calculateMatchConfidence(candidateA, candidateB)
+        };
+      })
+      .sort((a, b) => b.result.confidence - a.result.confidence)[0];
+
+    if (!best) return;
+
+    candidates.push({
+      id: candidateId(row, index),
+      candidate_a: best.candidateA,
+      candidate_b: candidateB,
+      confidence: best.result.confidence,
+      reason: best.result.reason,
+      suggested_canonical_name: best.result.suggested_canonical_name,
+      status: "Suggested",
+      recommended_action: best.result.recommended_action
+    });
+  });
+
+  return candidates;
+}
+
+export function applyCandidateANameToHarmonisedRows(
+  harmonisedRows: HarmonisedDataRow[],
+  candidate: AiMatchCandidate
+) {
+  const harmonisedRowId = candidate.candidate_b.harmonised_row_id;
+  const candidateAName = candidate.candidate_a.component_name.trim();
+
+  if (!harmonisedRowId || !candidateAName) return harmonisedRows;
+
+  return harmonisedRows.map((row) =>
+    row.harmonised_row_id === harmonisedRowId
+      ? {
+          ...row,
+          component_name: candidateAName
+        }
+      : row
+  );
+}
+
+export function applyAcceptedMatchNamesToHarmonisedRows(
+  harmonisedRows: HarmonisedDataRow[],
+  candidates: AiMatchCandidate[]
+) {
+  const acceptedNamesByRowId = new Map(
+    candidates
+      .filter((candidate) => candidate.status === "Accepted")
+      .map((candidate) => [
+        candidate.candidate_b.harmonised_row_id,
+        candidate.candidate_a.component_name.trim()
+      ])
+      .filter((entry): entry is [string, string] => Boolean(entry[0] && entry[1]))
+  );
+
+  if (!acceptedNamesByRowId.size) return harmonisedRows;
+
+  return harmonisedRows.map((row) => {
+    const acceptedName = acceptedNamesByRowId.get(row.harmonised_row_id);
+    return acceptedName
+      ? {
+          ...row,
+          component_name: acceptedName
+        }
+      : row;
+  });
 }

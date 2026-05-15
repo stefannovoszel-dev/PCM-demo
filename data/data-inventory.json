@@ -127,7 +127,7 @@
     "dq_checks": ["Between 0 and 100", "Certificate required for claim"],
     "evidence_link": "/sample-documents/supplier-declaration.pdf",
     "status": "Review",
-    "notes": "Shrink film declaration missing until supplier playback."
+    "notes": "Shrink film declaration missing until evidence intake."
   },
   {
     "record_id": "INV-006",
