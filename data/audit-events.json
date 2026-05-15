@@ -1,0 +1,62 @@
+[
+  {
+    "event_id": "AUD-0001",
+    "timestamp": "2026-05-05T08:10:00.000Z",
+    "actor": "System",
+    "action_type": "Validation completed",
+    "object_type": "Packaging dataset",
+    "object_id": "PKG-7781",
+    "before_value": null,
+    "after_value": { "valid_components": 3, "total_components": 5 },
+    "source": "Compliance Data Platform",
+    "comment": "Initial validation run identified material taxonomy and evidence gaps."
+  },
+  {
+    "event_id": "AUD-0002",
+    "timestamp": "2026-05-05T08:15:00.000Z",
+    "actor": "AI Matching",
+    "action_type": "AI suggested duplicate match",
+    "object_type": "Component",
+    "object_id": "CMP-1002",
+    "before_value": "Closure PE-HD blue 28 mm",
+    "after_value": "HDPE Cap Blue 28mm",
+    "source": "AI matching console",
+    "comment": "Confidence above acceptance threshold."
+  },
+  {
+    "event_id": "AUD-0003",
+    "timestamp": "2026-05-05T09:40:00.000Z",
+    "actor": "Data Steward",
+    "action_type": "Data steward accepted match",
+    "object_type": "Component",
+    "object_id": "CMP-1002",
+    "before_value": "Closure PE-HD blue 28 mm",
+    "after_value": "HDPE Cap Blue 28mm",
+    "source": "AI matching console",
+    "comment": "Duplicate part linked to canonical cap component."
+  },
+  {
+    "event_id": "AUD-0004",
+    "timestamp": "2026-05-05T10:15:00.000Z",
+    "actor": "System",
+    "action_type": "Payload regenerated",
+    "object_type": "Simulated osapiens-ready payload",
+    "object_id": "PKG-7781",
+    "before_value": null,
+    "after_value": { "components": 5 },
+    "source": "Payload generator",
+    "comment": "Payload generated from current harmonised data."
+  },
+  {
+    "event_id": "AUD-0005",
+    "timestamp": "2026-05-05T10:20:00.000Z",
+    "actor": "System",
+    "action_type": "Simulated publish completed",
+    "object_type": "Simulated osapiens-ready payload",
+    "object_id": "PKG-7781",
+    "before_value": { "status": "Draft" },
+    "after_value": { "status": "Simulated published" },
+    "source": "Publish simulation",
+    "comment": "No real external API was called."
+  }
+]

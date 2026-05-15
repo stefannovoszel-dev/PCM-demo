@@ -1,0 +1,37 @@
+[
+  {
+    "record_id": "PLM-7101",
+    "bom_node": "PKG-7781-01",
+    "component_name": "PET Bottle",
+    "material": "PET",
+    "weight_g": 36,
+    "dimensions": "82 mm diameter x 285 mm height",
+    "recyclability_grade": "A"
+  },
+  {
+    "record_id": "PLM-7102",
+    "bom_node": "PKG-7781-02",
+    "component_name": "Blue HDPE Cap 28mm",
+    "material": "High Density Polyethylene",
+    "weight_g": 2.7,
+    "dimensions": "28mm closure",
+    "recyclability_grade": "B"
+  },
+  {
+    "record_id": "PLM-7103",
+    "bom_node": "PKG-7781-03",
+    "component_name": "Sleeve PET clear",
+    "material": "PET clear",
+    "weight_g": 1.8,
+    "dimensions": "242 x 118 mm",
+    "recyclability_grade": "B"
+  },
+  {
+    "record_id": "PLM-7104",
+    "bom_node": "PKG-7781-04",
+    "component_name": "LDPE shrink wrap",
+    "material": "Low Density Polyethylene",
+    "weight": "6.4 g",
+    "recyclability_grade": null
+  }
+]

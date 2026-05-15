@@ -1,0 +1,93 @@
+[
+  {
+    "event_id": "EVT-001",
+    "timestamp": "2026-05-06T08:30:00.000Z",
+    "supplier_id": "SUP-00577",
+    "supplier_name": "FlexiFilms Benelux",
+    "component_id": "CMP-1004",
+    "event_type": "certificate_upload",
+    "title": "Supplier uploaded recycled content declaration",
+    "description": "FlexiFilms uploaded a declaration for LDPE shrink film and completed recyclability details.",
+    "field_updates": {
+      "recycled_content_percent": 35,
+      "recyclability_grade": "B",
+      "certificate_status": "Valid",
+      "certificate_id": "CERT-FILM-2026-118",
+      "evidence_url": "/sample-documents/supplier-declaration.pdf",
+      "supplier_confirmed": true
+    },
+    "resolves_fields": ["recycled_content_percent", "recyclability_grade", "certificate_id", "evidence_url", "supplier_confirmation"],
+    "data_quality_delta": 22,
+    "status": "Queued"
+  },
+  {
+    "event_id": "EVT-002",
+    "timestamp": "2026-05-06T09:15:00.000Z",
+    "supplier_id": "SUP-00492",
+    "supplier_name": "Acme Closures GmbH",
+    "component_id": "CMP-1002",
+    "event_type": "recycled_content_correction",
+    "title": "Supplier corrected recycled content from 25% to 30%",
+    "description": "Acme corrected the recycled content claim for the blue closure after internal certificate review.",
+    "field_updates": {
+      "recycled_content_percent": 30
+    },
+    "resolves_fields": [],
+    "data_quality_delta": 4,
+    "status": "Queued"
+  },
+  {
+    "event_id": "EVT-003",
+    "timestamp": "2026-05-06T10:40:00.000Z",
+    "supplier_id": "SUP-00492",
+    "supplier_name": "Acme Closures GmbH",
+    "component_id": "CMP-1002",
+    "event_type": "certificate_replacement",
+    "title": "Supplier replaced expired certificate",
+    "description": "Acme replaced the expired cap certificate with a 2026 recycled content certificate.",
+    "field_updates": {
+      "certificate_status": "Valid",
+      "certificate_id": "CERT-CAP-2026-204",
+      "evidence_url": "/sample-documents/recycled-content-certificate.pdf"
+    },
+    "resolves_fields": ["valid_certificate"],
+    "data_quality_delta": 8,
+    "status": "Queued"
+  },
+  {
+    "event_id": "EVT-004",
+    "timestamp": "2026-05-06T11:20:00.000Z",
+    "supplier_id": "SUP-00492",
+    "supplier_name": "Acme Closures GmbH",
+    "component_id": "CMP-1002",
+    "event_type": "material_change_notification",
+    "title": "Supplier submitted change notification for cap material",
+    "description": "Acme confirmed that PE-HD should be mapped to canonical HDPE for the cap.",
+    "field_updates": {
+      "material": "HDPE",
+      "material_aliases": ["PE-HD", "HD PE", "High Density Polyethylene"],
+      "supplier_confirmed": true
+    },
+    "resolves_fields": ["canonical_material", "supplier_confirmation"],
+    "data_quality_delta": 5,
+    "status": "Queued"
+  },
+  {
+    "event_id": "EVT-005",
+    "timestamp": "2026-05-06T12:10:00.000Z",
+    "supplier_id": "SUP-00211",
+    "supplier_name": "Labelhaus Europe",
+    "component_id": "CMP-1003",
+    "event_type": "alias_confirmation",
+    "title": "Supplier confirmed alias mapping",
+    "description": "Labelhaus confirmed that Sleeve PET clear and Label PET transparent refer to the same component.",
+    "field_updates": {
+      "aliases": ["Label PET transparent", "Sleeve PET clear", "PET clear label"],
+      "evidence_url": "/sample-documents/supplier-declaration.pdf",
+      "supplier_confirmed": true
+    },
+    "resolves_fields": ["supplier_alias_confirmation", "evidence_url", "supplier_confirmation"],
+    "data_quality_delta": 8,
+    "status": "Queued"
+  }
+]

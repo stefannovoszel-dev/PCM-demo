@@ -1,0 +1,14 @@
+[
+  { "id": "DP-001", "datapoint": "component_name", "domain": "Packaging structure", "required": true, "definition": "Human readable packaging component name" },
+  { "id": "DP-002", "datapoint": "material", "domain": "Material taxonomy", "required": true, "definition": "Canonical material classification" },
+  { "id": "DP-003", "datapoint": "weight_g", "domain": "Mass balance", "required": true, "definition": "Component weight in grams" },
+  { "id": "DP-004", "datapoint": "supplier_id", "domain": "Supplier evidence", "required": true, "definition": "Confirmed supplier identifier" },
+  { "id": "DP-005", "datapoint": "recycled_content_percent", "domain": "Recycled content", "required": true, "definition": "Declared recycled content percentage" },
+  { "id": "DP-006", "datapoint": "recyclability_grade", "domain": "Recyclability", "required": true, "definition": "Internal recyclability class" },
+  { "id": "DP-007", "datapoint": "certificate_status", "domain": "Evidence", "required": true, "definition": "Certificate validity status" },
+  { "id": "DP-008", "datapoint": "evidence_url", "domain": "Evidence", "required": true, "definition": "Traceable evidence document link" },
+  { "id": "DP-009", "datapoint": "market_country", "domain": "Market", "required": true, "definition": "ISO-2 market country" },
+  { "id": "DP-010", "datapoint": "supplier_confirmation", "domain": "Supplier evidence", "required": true, "definition": "Supplier confirmation for the component record" },
+  { "id": "DP-011", "datapoint": "component_aliases", "domain": "Matching", "required": false, "definition": "Aliases used for duplicate detection" },
+  { "id": "DP-012", "datapoint": "chain_of_custody", "domain": "Evidence", "required": false, "definition": "Optional chain-of-custody evidence" }
+]

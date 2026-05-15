@@ -1,0 +1,32 @@
+[
+  {
+    "record_id": "ERP-9001",
+    "sku": "SW-1L-DE",
+    "pack_id": "PKG-7781",
+    "component": "Bottle PET clear 1L",
+    "material_code": "PET clear",
+    "weight": "0.036 kg",
+    "supplier": "Rhine Packaging AG",
+    "country": "Deutschland"
+  },
+  {
+    "record_id": "ERP-9002",
+    "sku": "SW-1L-DE",
+    "pack_id": "PKG-7781",
+    "component": "Closure PE-HD blue 28 mm",
+    "material_code": "PE-HD",
+    "weight": "0.0027 kg",
+    "supplier": "Acme GmbH",
+    "country": "Germany"
+  },
+  {
+    "record_id": "ERP-9003",
+    "sku": "SW-1L-DE",
+    "pack_id": "PKG-7781",
+    "component": "Transport carton",
+    "material_code": "Corrugated fiberboard",
+    "weight": "0.142 kg",
+    "supplier": "Bavaria Board GmbH",
+    "country": "DE"
+  }
+]

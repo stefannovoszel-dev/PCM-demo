@@ -1,0 +1,73 @@
+[
+  {
+    "id": "MATCH-001",
+    "candidate_a": {
+      "component_id": "CMP-1002",
+      "component_name": "Blue HDPE Cap 28mm",
+      "material": "HDPE",
+      "supplier_id": "SUP-00492",
+      "supplier_name": "Acme Closures GmbH",
+      "weight_g": 2.7,
+      "dimensions": { "diameter_mm": 28 }
+    },
+    "candidate_b": {
+      "component_name": "Closure PE-HD blue 28 mm",
+      "material": "PE-HD",
+      "supplier_id": "SUP-00492",
+      "supplier_name": "Acme GmbH",
+      "weight_g": 2.72,
+      "dimensions": { "diameter_mm": 28 }
+    },
+    "confidence": 100,
+    "reason": "Same canonical material, high token overlap, same supplier, diameter match, and close weight.",
+    "suggested_canonical_name": "HDPE Cap Blue 28mm",
+    "status": "Suggested",
+    "recommended_action": "Accept match"
+  },
+  {
+    "id": "MATCH-002",
+    "candidate_a": {
+      "component_id": "CMP-1003",
+      "component_name": "Label PET transparent",
+      "material": "PET",
+      "supplier_id": "SUP-00211",
+      "supplier_name": "Labelhaus Europe",
+      "weight_g": 1.8
+    },
+    "candidate_b": {
+      "component_name": "Sleeve PET clear",
+      "material": "PET clear",
+      "supplier_id": "SUP-00211",
+      "supplier_name": "Labelhaus Europe",
+      "weight_g": 1.9
+    },
+    "confidence": 74,
+    "reason": "Same canonical material and supplier with close weight, but ambiguous label versus sleeve naming.",
+    "suggested_canonical_name": "PET Label Transparent",
+    "status": "Suggested",
+    "recommended_action": "Review before accepting"
+  },
+  {
+    "id": "MATCH-003",
+    "candidate_a": {
+      "component_id": "CMP-1005",
+      "component_name": "Transport Box",
+      "material": "Corrugated Board",
+      "supplier_id": "SUP-00102",
+      "supplier_name": "Bavaria Board GmbH",
+      "weight_g": 142
+    },
+    "candidate_b": {
+      "component_name": "Outer case",
+      "material": "Corrugated fiberboard",
+      "supplier_id": "SUP-00102",
+      "supplier_name": "Bavaria Board GmbH",
+      "weight_g": 142.6
+    },
+    "confidence": 84,
+    "reason": "Same supplier and close weight, with material alias evidence but lower component-name overlap.",
+    "suggested_canonical_name": "Corrugated Transport Box 12x1L",
+    "status": "Suggested",
+    "recommended_action": "Create alias"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TR-001",
+    "field": "weight_g",
+    "source_value": "0.012 kg",
+    "transformed_value": "12 g",
+    "rule": "Convert kilograms to grams",
+    "source_system": "ERP"
+  },
+  {
+    "id": "TR-002",
+    "field": "material",
+    "source_value": "PE-HD",
+    "transformed_value": "HDPE",
+    "rule": "Material synonym taxonomy",
+    "source_system": "PLM"
+  },
+  {
+    "id": "TR-003",
+    "field": "market_country",
+    "source_value": "Deutschland",
+    "transformed_value": "DE",
+    "rule": "Country normalization to ISO-2",
+    "source_system": "ERP"
+  },
+  {
+    "id": "TR-004",
+    "field": "supplier_id",
+    "source_value": "Acme GmbH",
+    "transformed_value": "SUP-00492",
+    "rule": "Supplier master data lookup",
+    "source_system": "Procurement"
+  },
+  {
+    "id": "TR-005",
+    "field": "recycled_content_percent",
+    "source_value": "30 percent",
+    "transformed_value": "30%",
+    "rule": "Extract numeric percentage",
+    "source_system": "Supplier Portal"
+  }
+]

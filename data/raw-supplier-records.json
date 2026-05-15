@@ -1,0 +1,29 @@
+[
+  {
+    "record_id": "SUP-REC-3301",
+    "supplier_id": "SUP-00318",
+    "supplier_name": "Rhine Packaging AG",
+    "part_name": "Bottle PET clear 1L",
+    "recycled_content": "30 percent",
+    "certificate_id": "CERT-PET-2026-014",
+    "certificate_status": "Valid"
+  },
+  {
+    "record_id": "SUP-REC-3302",
+    "supplier_id": "SUP-00492",
+    "supplier_name": "Acme Closures GmbH",
+    "part_name": "Closure PE-HD blue 28 mm",
+    "recycled_content": "25 percent",
+    "certificate_id": "CERT-CAP-2023-442",
+    "certificate_status": "Expired"
+  },
+  {
+    "record_id": "SUP-REC-3303",
+    "supplier_id": "SUP-00577",
+    "supplier_name": "FlexiFilms Benelux",
+    "part_name": "Transit shrink",
+    "recycled_content": "",
+    "certificate_id": "",
+    "certificate_status": "Missing"
+  }
+]
